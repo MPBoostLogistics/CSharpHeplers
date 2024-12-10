@@ -9,23 +9,28 @@ namespace CSharpHelpers.Services
         #endregion
 
         #region Properties 
-        /// <summary>
-        /// Project directory.
-        /// </summary>
-        public string ProjectDirectory { get; }
-            
+        // ...    
         #endregion
 
         #region Constructors
-        public FileService()
-        {
-            // Get project directory
-            DirectoryInfo? getParentworkingDirectory = Directory.GetParent(Environment.CurrentDirectory) ?? throw new DirectoryNotFoundException();
-            ProjectDirectory = getParentworkingDirectory.Parent!.Parent!.FullName;
-        }
+        // ... 
         #endregion
 
         #region Functionality
+
+        /// <summary>
+        /// Returns DirectoryInfo object of current project.
+        /// </summary>
+        /// <param name="directoryInfo">DirectoryInfo object found (optional).</param>
+        /// <returns>Operation execution flag.</returns>
+        /// <exception cref="DirectoryNotFoundException">Exception if directory not found.</exception>
+        public static bool GetProjectDirectory(out DirectoryInfo? directoryInfo) 
+        {
+            DirectoryInfo? getParentworkingDirectory = Directory.GetParent(Environment.CurrentDirectory) ?? throw new DirectoryNotFoundException();
+            var projectDirectoryPath = getParentworkingDirectory.Parent!.Parent!.FullName;
+
+            return GetDirectoryInfo(projectDirectoryPath, out directoryInfo);
+        }
 
         /// <summary>
         /// Get a 'DirectoryInfo' object given a directory path string.
