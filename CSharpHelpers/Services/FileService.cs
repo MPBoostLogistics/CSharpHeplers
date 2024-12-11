@@ -1,11 +1,14 @@
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace CSharpHelpers.Services
 {
     public class FileService
     {
         #region Variables and constants
-        // ...
+        public const string FILEEXTENSION_JPG = ".jpg";
+        public const string FILEEXTENSION_JPEG = ".jpeg";
+        public const string FILEEXTENSION_PDF = ".pdf";
         #endregion
 
         #region Properties 
@@ -86,6 +89,50 @@ namespace CSharpHelpers.Services
 
             return fileInfos is not null && fileInfos.Length > 0;
         }
+
+        /// <summary>
+        /// Search files in a directory by name pattern. 
+        /// </summary>
+        /// <param name="fileInfos">Files to search.</param>
+        /// <param name="fileNameRegex">Regular expression for file search.</param>
+        /// <returns>Lists of matching and non-matching files.</returns>
+        public static (List<FileInfo> matchList, List<FileInfo> missMatchList) SearchFilesInDirectory(in FileInfo[] fileInfos, Regex fileNameRegex) 
+        {
+            List<FileInfo> matchList = [], missMatchList = [];
+
+            foreach (var fileInfo in fileInfos) 
+            {
+                var match = fileNameRegex.Match(fileInfo.Name);
+                if(!match.Success)
+                    missMatchList.Add(fileInfo);
+                else 
+                    matchList.Add(fileInfo);
+            }
+
+            return (matchList, missMatchList);  
+        }
+
+/*
+
+ internal static (List<FileInfo> matchList, List<FileInfo> missMatchList) GetFilesByNameMatchingPattern(in List<FileInfo> fileInfos, Regex fileNameRegex) 
+        {
+            List<FileInfo> matchList = [], missMatchList = [];
+            
+            foreach (var fileInfo in fileInfos) 
+            {
+                var match = fileNameRegex.Match(fileInfo.Name);
+                if(!match.Success) 
+                    missMatchList.Add(fileInfo);
+                else 
+                    matchList.Add(fileInfo);
+            }
+
+            return (matchList, missMatchList);  
+        }
+
+*/
+
+
 
         /// <summary>
         /// Deletes file at path.
