@@ -57,34 +57,31 @@ namespace CSharpHelpers.Services
         /// Search files in a directory by extensions. 
         /// </summary>
         /// <param name="dirPath">Directory path string.</param>
-        /// <param name="extensions">Collection of file extensions to search for (optional).</param>
         /// <param name="fileInfos">File search results.</param>
-        public static bool SearchFilesInDirectory(string dirPath, string[]? extensions, out FileInfo[]? fileInfos) 
+        /// <param name="extensions">Collection of file extensions to search for (optional).</param>
+        public static bool SearchFilesInDirectory(string dirPath, out FileInfo[]? fileInfos, string[]? extensions = null) 
         {
             fileInfos = null;
 
-            if(GetDirectoryInfo(dirPath, out DirectoryInfo? directoryInfo)
-                && directoryInfo is not null) 
+            var dirSuccess = GetDirectoryInfo(dirPath, out DirectoryInfo? directoryInfo);
+            if(dirSuccess is false || directoryInfo is null) 
             {
-                fileInfos = directoryInfo.GetFiles();
+                Trace.WriteLine($"Unable to find dir at path '{dirPath}'");
+                return false;
+            }
 
-                if(fileInfos is null || fileInfos.Length == 0) 
-                {
-                    Trace.WriteLine($"Directory at path\n\"{dirPath}\"\ndon`t contain any files.");
-                } 
-                else 
-                {
-                    if(extensions is not null && extensions.Length > 0) 
-                    {
-                        fileInfos = fileInfos
-                                        .Where(fi => extensions.Contains(fi.Extension))
-                                        .ToArray();
-                    }
-                }
-            } 
-            else 
+            fileInfos = directoryInfo.GetFiles();
+            if(fileInfos is null || fileInfos.Length == 0) 
             {
-                Trace.WriteLine($"Directory at path\n\"{dirPath}\"\ndoes not exist.");
+                Trace.WriteLine($"There are no files atpath '{dirPath}'");
+                return false;
+            }
+
+            if(extensions is not null && extensions.Length != 0) 
+            {
+                fileInfos = fileInfos
+                                .Where(fi => extensions.Contains(fi.Extension))
+                                .ToArray();
             }
 
             return fileInfos is not null && fileInfos.Length > 0;
