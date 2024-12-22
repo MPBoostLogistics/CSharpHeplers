@@ -5,7 +5,7 @@
     <version>1.0.7</version>
     <authors>Vegi Woo</authors>
     <description>Package Description</description>
-    <repository type="git" commit="24368fdbfb554b8b3fbe4e6c6c0f251b91b45413" />
+    <repository type="git" commit="7d7324376bb81c79b913e6d3a549c5ec80d66da4" />
     <dependencies>
       <group targetFramework="net8.0" />
     </dependencies>

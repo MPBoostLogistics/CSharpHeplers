@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using CSharpHelpers.Models;
 
 namespace CSharpHelpers.Services
 {
@@ -162,6 +163,31 @@ namespace CSharpHelpers.Services
             }
                 
             return !File.Exists(filePath);
+        }
+
+        /// <summary>
+        /// Renames a file according to given 'Save File' model.
+        /// </summary>
+        /// <param name="savedFile">'Save File' model.</param>
+        /// <returns>Operation execution flag.</returns>
+        public static bool RenameFile(SavedFile savedFile)
+        {
+            var targetDirPath = savedFile.FileSaveDirectory?.FullName; 
+
+            if (string.IsNullOrEmpty(targetDirPath))
+                return false; 
+
+            var newFileName = savedFile.GetNewfilenameWithTargetExtension();
+            var newFilePath = Path.Combine(targetDirPath, newFileName);
+
+            File.Move(savedFile.FileInfo.FullName, newFilePath);
+            File.SetCreationTime(newFilePath, savedFile.FileUpdateDate);
+            File.SetLastWriteTime(newFilePath, savedFile.FileUpdateDate);
+
+            // TODO: Update file author 
+
+            return File.Exists(newFilePath) && 
+                File.GetCreationTime(newFilePath) == savedFile.FileUpdateDate;
         }
 
         #endregion

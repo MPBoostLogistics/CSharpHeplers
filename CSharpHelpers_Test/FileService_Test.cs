@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using CSharpHelpers.Models;
 using CSharpHelpers.Services;
 
 namespace CSharpHelpers_Test
@@ -10,17 +11,22 @@ namespace CSharpHelpers_Test
         private DirectoryInfo? ProjectDirectory;
         private DirectoryInfo? _testDirectory;
         private FileInfo[]? testFiles = null;
-        private readonly int testFilesCount = 4;
+        private static readonly int testFilesCount = 4;
+        private readonly string testFilesAuthor = "Mister X.";
         private readonly string[] testExtensions = 
             [FileService.FILEEXTENSION_JPG, FileService.FILEEXTENSION_JPEG, FileService.FILEEXTENSION_PDF];
-         private readonly string[] incorrectFileNames = 
-            ["Some filename 01", "Some filename 02", "Some filename 03"];
+        private readonly string[] testFileNames = new string[testFilesCount];
 
         [OneTimeSetUp]
         public void Setup()
         {
             FileService.GetProjectDirectory(out ProjectDirectory);
             Trace.Listeners.Add(new ConsoleTraceListener());
+
+            for (int i = 0; i < testFilesCount; i++)
+            {
+                testFileNames[i] = Guid.NewGuid().ToString();
+            }
         }
 
         [TestCase(TEST_PATH_CORRECT, true)]
@@ -70,15 +76,19 @@ namespace CSharpHelpers_Test
                 Assert.That(testFilesCount, Is.EqualTo (testFiles!.Length));
             });
 
-            
+            // arrange 
+            for (int i = 0; i < testFiles!.Length; i++)
+            {
+                FileInfo? testFile = testFiles![i];
+                FileService.RenameFile(new SavedFile(testFile, testFileNames[i], FileService.FILEEXTENSION_JPEG, testFilesAuthor, testFile.Directory));
+            }
 
-
-
-
-            
-
+            // assert 
+            for (int i = 0; i < testFiles.Length; i++)
+            {
+                Does.Contain(testFileNames.Contains(testFiles[i].Name));
+            }
         }
-
 
         [OneTimeTearDown]
         public void Finish() 
