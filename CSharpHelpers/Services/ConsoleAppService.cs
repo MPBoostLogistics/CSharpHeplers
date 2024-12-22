@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text;
 
 namespace CSharpHelpers.Services 
@@ -5,7 +6,7 @@ namespace CSharpHelpers.Services
     public class ConsoleAppService 
     {
         #region Variables and constants
-        // ...
+        public Version? AppVersion {get;}
         #endregion
 
         #region Properties 
@@ -13,7 +14,10 @@ namespace CSharpHelpers.Services
         #endregion
 
         #region Constructors
-        // ... 
+        public ConsoleAppService()
+        {
+            AppVersion = Assembly.GetExecutingAssembly().GetName().Version;
+        }
         #endregion
 
         #region Functionality

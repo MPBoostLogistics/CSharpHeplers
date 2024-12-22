@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Vegiwoo.CSharpHelpers</id>
+    <version>1.0.7</version>
+    <authors>Vegi Woo</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="24368fdbfb554b8b3fbe4e6c6c0f251b91b45413" />
+    <dependencies>
+      <group targetFramework="net8.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/bin/Debug/net8.0/CSharpHelpers.dll" target="lib/net8.0/CSharpHelpers.dll" />
+  </files>
+</package>

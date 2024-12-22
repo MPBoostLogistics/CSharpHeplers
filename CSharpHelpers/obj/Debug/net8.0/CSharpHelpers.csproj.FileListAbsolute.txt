@@ -1,0 +1,12 @@
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/bin/Debug/net8.0/CSharpHelpers.deps.json
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/bin/Debug/net8.0/CSharpHelpers.dll
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/bin/Debug/net8.0/CSharpHelpers.pdb
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/obj/Debug/net8.0/CSharpHelpers.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/obj/Debug/net8.0/CSharpHelpers.AssemblyInfoInputs.cache
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/obj/Debug/net8.0/CSharpHelpers.AssemblyInfo.cs
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/obj/Debug/net8.0/CSharpHelpers.csproj.CoreCompileInputs.cache
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/obj/Debug/net8.0/CSharpHelpers.sourcelink.json
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/obj/Debug/net8.0/CSharpHelpers.dll
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/obj/Debug/net8.0/refint/CSharpHelpers.dll
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/obj/Debug/net8.0/CSharpHelpers.pdb
+/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/obj/Debug/net8.0/ref/CSharpHelpers.dll

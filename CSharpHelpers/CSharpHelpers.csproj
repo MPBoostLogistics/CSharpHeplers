@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageId>Vegiwoo.CSharpHelpers</PackageId>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <Authors>Vegi Woo</Authors>
     <Company>Personal Company</Company>
     <TargetFramework>net8.0</TargetFramework>

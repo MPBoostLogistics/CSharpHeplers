@@ -36,19 +36,32 @@ namespace CSharpHelpers.Services
         }
 
         /// <summary>
-        /// Get a 'DirectoryInfo' object given a directory path string.
+        /// Gets or creates a DirectoryInfo object for a given directory path string.
         /// </summary>
         /// <param name="dirPath">Directory path string.</param>
         /// <param name="directoryInfo">'DirectoryInfo' object or null.</param>
-        /// <returns>Search execution flag.</returns>
-        public static bool GetDirectoryInfo(string dirPath, out DirectoryInfo? directoryInfo) 
+        /// <param name="isCreateNewDirectory">'Сreate a new directory if it don't exist.</param>
+        /// <returns>Operation execution flag.</returns>
+        public static bool GetDirectoryInfo(string dirPath, out DirectoryInfo? directoryInfo, bool isCreateNewDirectory = false) 
         {
             var dirPathString = dirPath;
 
             if(dirPath.Contains('\'')) 
                 dirPathString = dirPath.Replace("'", "");
-            
-            directoryInfo =  Directory.Exists(dirPathString) ? new DirectoryInfo(dirPathString) : null;
+
+            switch(Directory.Exists(dirPathString)) 
+            {
+                case true:
+                    directoryInfo = new DirectoryInfo(dirPathString);
+                    break;
+                case false:
+                    directoryInfo = isCreateNewDirectory switch
+                    {
+                        true => Directory.CreateDirectory(dirPathString),
+                        _ => null,
+                    };
+                    break;
+            }
 
             return directoryInfo is not null;
         }
