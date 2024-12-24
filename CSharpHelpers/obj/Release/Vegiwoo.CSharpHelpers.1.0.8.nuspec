@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Vegiwoo.CSharpHelpers</id>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <authors>Vegi Woo</authors>
     <description>Package Description</description>
     <repository type="git" commit="6138111290991e93eaa8bb047cf98bdfb380a82a" />

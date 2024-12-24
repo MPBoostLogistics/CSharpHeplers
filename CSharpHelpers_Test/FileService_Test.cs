@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using CSharpHelpers.Models;
 using CSharpHelpers.Services;
 
@@ -88,6 +89,28 @@ namespace CSharpHelpers_Test
             {
                 Does.Contain(testFileNames.Contains(testFiles[i].Name));
             }
+        }
+
+        [Test, Order(4)]
+        public void GetFilesByName_Test() 
+        {
+            // input assert 
+            Assert.Multiple(() => {
+                Assert.That(testFiles, Is.Not.Null);
+                Assert.That(testFilesCount, Is.EqualTo (testFiles!.Length));
+            });
+
+            // arrange 
+            Regex guidRegex = new (FileService.GUID_REGEX_PATTERN, RegexOptions.None, TimeSpan.FromSeconds(1));
+            
+            // act 
+            var (matchList, missMatchList) = FileService.SearchFilesInDirectory(in testFiles!, guidRegex);
+
+            //assert 
+            Assert.Multiple(() => {
+                Assert.That(matchList, Has.Count.EqualTo(testFilesCount));
+                Assert.That(missMatchList, Has.Count.EqualTo(0));
+            });
         }
 
         [OneTimeTearDown]

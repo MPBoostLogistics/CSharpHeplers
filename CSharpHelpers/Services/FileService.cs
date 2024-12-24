@@ -10,6 +10,7 @@ namespace CSharpHelpers.Services
         public const string FILEEXTENSION_JPG = ".jpg";
         public const string FILEEXTENSION_JPEG = ".jpeg";
         public const string FILEEXTENSION_PDF = ".pdf";
+        public const string GUID_REGEX_PATTERN = @"[0-9A-Fa-f]{8}[-]?[0-9A-Fa-f]{4}[-]?[0-9A-Fa-f]{4}[-]?[0-9A-Fa-f]{4}[-]?[0-9A-Fa-f]{12}";
         #endregion
 
         #region Properties 

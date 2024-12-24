@@ -12,11 +12,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("Personal Company")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.7.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.7+24368fdbfb554b8b3fbe4e6c6c0f251b91b45413")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.8.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.8+6138111290991e93eaa8bb047cf98bdfb380a82a")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSharpHelpers")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSharpHelpers")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.7.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.8.0")]
 
 // Создано классом WriteCodeFragment MSBuild.
 

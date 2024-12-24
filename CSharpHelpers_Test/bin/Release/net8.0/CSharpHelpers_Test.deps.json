@@ -12,9 +12,9 @@
           "NUnit": "3.14.0",
           "NUnit.Analyzers": "3.9.0",
           "NUnit3TestAdapter": "4.5.0",
-          "Vegiwoo.CSharpHelpers": "1.0.7",
+          "Vegiwoo.CSharpHelpers": "1.0.8",
           "coverlet.collector": "6.0.0",
-          "CSharpHelpers": "1.0.7.0"
+          "CSharpHelpers": "1.0.8.0"
         },
         "runtime": {
           "CSharpHelpers_Test.dll": {}
@@ -318,16 +318,16 @@
       "NUnit.Analyzers/3.9.0": {},
       "NUnit3TestAdapter/4.5.0": {},
       "System.Reflection.Metadata/1.6.0": {},
-      "Vegiwoo.CSharpHelpers/1.0.7": {
+      "Vegiwoo.CSharpHelpers/1.0.8": {
         "runtime": {
           "CSharpHelpers.dll": {}
         }
       },
-      "CSharpHelpers/1.0.7.0": {
+      "CSharpHelpers/1.0.8.0": {
         "runtime": {
           "CSharpHelpers.dll": {
-            "assemblyVersion": "1.0.7.0",
-            "fileVersion": "1.0.7.0"
+            "assemblyVersion": "1.0.8.0",
+            "fileVersion": "1.0.8.0"
           }
         }
       }
@@ -430,12 +430,12 @@
       "path": "system.reflection.metadata/1.6.0",
       "hashPath": "system.reflection.metadata.1.6.0.nupkg.sha512"
     },
-    "Vegiwoo.CSharpHelpers/1.0.7": {
+    "Vegiwoo.CSharpHelpers/1.0.8": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "CSharpHelpers/1.0.7.0": {
+    "CSharpHelpers/1.0.8.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
