@@ -7,6 +7,7 @@ namespace CSharpHelpers_Test
 {
     public class FileService_Test
     {
+        #region Variables and constants
         private const string TEST_PATH_CORRECT = "TestDirectory"; 
         private const string TEST_PATH_INCORRECT = "TestDirectory01";
         private DirectoryInfo? ProjectDirectory;
@@ -17,7 +18,8 @@ namespace CSharpHelpers_Test
         private readonly string[] testExtensions = 
             [FileService.FILEEXTENSION_JPG, FileService.FILEEXTENSION_JPEG, FileService.FILEEXTENSION_PDF];
         private readonly string[] testFileNames = new string[testFilesCount];
-
+        #endregion
+       
         [OneTimeSetUp]
         public void Setup()
         {
