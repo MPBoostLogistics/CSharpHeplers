@@ -5,9 +5,13 @@
     <version>1.0.8</version>
     <authors>Vegi Woo</authors>
     <description>Package Description</description>
-    <repository type="git" commit="6138111290991e93eaa8bb047cf98bdfb380a82a" />
+    <repository type="git" commit="b729d3f269dead7b6df7a29cb11eaf8c819dcfbe" />
     <dependencies>
-      <group targetFramework="net8.0" />
+      <group targetFramework="net8.0">
+        <dependency id="IronOCR" version="2024.12.2" exclude="Build,Analyzers" />
+        <dependency id="IronOcr.Languages.Russian" version="2020.11.2" exclude="Build,Analyzers" />
+        <dependency id="IronOcr.MacOs.ARM" version="2024.12.2" exclude="Build,Analyzers" />
+      </group>
     </dependencies>
   </metadata>
   <files>

@@ -4,7 +4,7 @@ using CSharpHelpers.Models;
 
 namespace CSharpHelpers.Services
 {
-    public class FileService
+    public class FileService : BaseService
     {
         #region Variables and constants
         public const string FILEEXTENSION_JPG = ".jpg";

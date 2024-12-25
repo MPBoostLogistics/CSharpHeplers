@@ -54,6 +54,14 @@
             "IronOcr.MacOs.ARM": {
               "target": "Package",
               "version": "[2024.12.2, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.UserSecrets": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             }
           },
           "imports": [

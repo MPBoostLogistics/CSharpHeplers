@@ -1,32 +1,28 @@
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using CSharpHelpers.Models;
 using CSharpHelpers.Services;
 
 namespace CSharpHelpers_Test
 {
-    public class FileService_Test
+    [Order (1)]
+    public class FileService_Test : Base_Test
     {
         #region Variables and constants
-        private const string TEST_PATH_CORRECT = "TestDirectory"; 
+        
         private const string TEST_PATH_INCORRECT = "TestDirectory01";
-        private DirectoryInfo? ProjectDirectory;
         private DirectoryInfo? _testDirectory;
         private FileInfo[]? testFiles = null;
-        private static readonly int testFilesCount = 4;
+        
         private readonly string testFilesAuthor = "Mister X.";
-        private readonly string[] testExtensions = 
-            [FileService.FILEEXTENSION_JPG, FileService.FILEEXTENSION_JPEG, FileService.FILEEXTENSION_PDF];
-        private readonly string[] testFileNames = new string[testFilesCount];
+        private readonly string[] testFileNames = new string[TEST_FILES_COUNT];
         #endregion
        
         [OneTimeSetUp]
-        public void Setup()
+        override public void Setup()
         {
-            FileService.GetProjectDirectory(out ProjectDirectory);
-            Trace.Listeners.Add(new ConsoleTraceListener());
+            base.Setup();
 
-            for (int i = 0; i < testFilesCount; i++)
+            for (int i = 0; i < TEST_FILES_COUNT; i++)
             {
                 testFileNames[i] = Guid.NewGuid().ToString();
             }
@@ -59,7 +55,7 @@ namespace CSharpHelpers_Test
             var testDirectorySuccess = FileService.GetDirectoryInfo(testPath, out _testDirectory); 
             
             // act 
-            var filesByExtensionSuccess = FileService.SearchFilesInDirectory(_testDirectory!.FullName, out testFiles, testExtensions);
+            var filesByExtensionSuccess = FileService.SearchFilesInDirectory(_testDirectory!.FullName, out testFiles, _testFilesExtensions);
 
             // assert 
             Assert.Multiple(() => {
@@ -76,7 +72,7 @@ namespace CSharpHelpers_Test
             // input assert 
             Assert.Multiple(() => {
                 Assert.That(testFiles, Is.Not.Null);
-                Assert.That(testFilesCount, Is.EqualTo (testFiles!.Length));
+                Assert.That(testFiles, Has.Length.EqualTo (TEST_FILES_COUNT));
             });
 
             // arrange 
@@ -99,7 +95,7 @@ namespace CSharpHelpers_Test
             // input assert 
             Assert.Multiple(() => {
                 Assert.That(testFiles, Is.Not.Null);
-                Assert.That(testFilesCount, Is.EqualTo (testFiles!.Length));
+                Assert.That(testFiles!, Has.Length.EqualTo (TEST_FILES_COUNT));
             });
 
             // arrange 
@@ -110,15 +106,9 @@ namespace CSharpHelpers_Test
 
             //assert 
             Assert.Multiple(() => {
-                Assert.That(matchList, Has.Count.EqualTo(testFilesCount));
+                Assert.That(matchList, Has.Count.EqualTo(TEST_FILES_COUNT));
                 Assert.That(missMatchList, Has.Count.EqualTo(0));
             });
-        }
-
-        [OneTimeTearDown]
-        public void Finish() 
-        {
-            Trace.Flush();
         }
 
         // arrange

@@ -4,28 +4,34 @@ using IronOcr;
 
 namespace CSharpHelpers.Services
 {
-
-    public class OCRService
+    public class OCRService : BaseService
     {
         #region Variables and constants
-        private OCRServiceProvider _provider;
-
+        private readonly OCRServiceProvider _provider;
         private readonly IronTesseract _ocrIronTesseract;
+        public const string IRON_OCR_KEY = "IRON_OCR_KEY";
         #endregion
 
         #region Constructors
         // For IronOcr
-        public OCRService(OCRServiceProvider provider, string ocrIronKey)
+        public OCRService(OCRServiceProvider provider) : base()
         {
             _provider = provider;
 
             // IronOCRProvider
+            var ocrIronKey = config[IRON_OCR_KEY];
             IronOcr.License.LicenseKey = ocrIronKey; 
             _ocrIronTesseract = new() { Language = OcrLanguage.Russian };
         }
         #endregion
 
         #region Funtionality
+
+        /// <summary>
+        /// Scans text information from files.
+        /// </summary>
+        /// <param name="fileInfos">A FileInfo objects representing a files</param>
+        /// <returns>A collection of ScanTextResult objects as result of execution.</returns>
         public async Task<List<ScanTextResult>> ScanTextFromFiles(List<FileInfo> fileInfos) 
         {
             Trace.WriteLine("Document scanning started...");
@@ -48,6 +54,11 @@ namespace CSharpHelpers.Services
             return results;
         }
 
+        /// <summary>
+        /// Scanning text information from a file.
+        /// </summary>
+        /// <param name="fileInfo">A FileInfo object representing a file.</param>
+        /// <returns>ScanTextResult object as a result of scanning.</returns>
         private async Task<ScanTextResult> ScanTextFromFile(FileInfo fileInfo) 
         {
             Stopwatch stopwatch = new();
@@ -64,7 +75,8 @@ namespace CSharpHelpers.Services
                     {
                         switch (fileInfo.Extension) 
                         {
-                            case FileService.FILEEXTENSION_JPG: case FileService.FILEEXTENSION_JPEG:
+                            case FileService.FILEEXTENSION_JPG: 
+                            case FileService.FILEEXTENSION_JPEG:
                                 input.LoadImage(fileInfo.FullName);
                                 isConvertToPdfRequired = true;
                                 break;
@@ -73,8 +85,11 @@ namespace CSharpHelpers.Services
                                 break;  
                         }
 
-                        OcrResult result = _ocrIronTesseract.Read(input);
-                        text = result.Text;
+                        var readTask = _ocrIronTesseract.ReadAsync(input);
+                        readTask.Start();
+                        readTask.Wait();
+
+                        text = readTask.Result.Text;
                     }
 
                     break;
