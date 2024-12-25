@@ -1,6 +1,5 @@
 using CSharpHelpers.Models;
 using CSharpHelpers.Services;
-using IronOcr;
 
 namespace CSharpHelpers_Test 
 {
@@ -10,9 +9,8 @@ namespace CSharpHelpers_Test
         #region Variables and constants
         private DirectoryInfo? _testDirectoryInfo;
         private FileInfo[]? _testFileInfos;
-        private OCRService? _ocrService;
+        private OCRService? _ironOcrService;
         
-
         #endregion
 
         public override void Setup()
@@ -21,32 +19,32 @@ namespace CSharpHelpers_Test
 
             FileService.GetDirectoryInfo(_testDirectoryPath!, out _testDirectoryInfo);
             FileService.SearchFilesInDirectory(_testDirectoryInfo!.FullName, out _testFileInfos, _testFilesExtensions);
+
+            _ironOcrService = new(OCRServiceProvider.IronOCRProvider);
         }
 
         [Test]
-        public void ScanDocuments_Test() 
+        public async Task ScanDocuments_Test() 
         {
             // input assert 
             Assert.Multiple(() => {
                 Assert.That(_testDirectoryInfo, Is.Not.Null);
                 Assert.That(_testFileInfos, Is.Not.Null);
                 Assert.That(_testFileInfos, Has.Length.EqualTo(TEST_FILES_COUNT));
+                Assert.That(_ironOcrService, Is.Not.Null);
             });
 
             // arrange
-            // ... 
-            
-            //_ocrService = new (OCRServiceProvider.IronOCRProvider, ironOcrKey);
-            // ...
+            var testScanTask = _ironOcrService!.ScanTextFromFiles([.. _testFileInfos!]);
 
             // act 
-            var ironOcrKey = Environment.GetEnvironmentVariable(OCRService.IRON_OCR_KEY);
+            await Task.Run(async () => await testScanTask);
+            testScanTask.Wait();
+
+            List<ScanTextResult>? testScanTextResults = testScanTask.Result;
 
             // assert 
-            Assert.That(ironOcrKey, Is.Not.Null);
-
-
-            //OCRService. 
+            Assert.That(testScanTextResults, Has.Count.EqualTo(TEST_FILES_COUNT));
         }
     }
 }

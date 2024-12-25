@@ -16,12 +16,20 @@ namespace CSharpHelpers.Services
         // For IronOcr
         public OCRService(OCRServiceProvider provider) : base()
         {
+        
             _provider = provider;
 
             // IronOCRProvider
             var ocrIronKey = config[IRON_OCR_KEY];
-            IronOcr.License.LicenseKey = ocrIronKey; 
-            _ocrIronTesseract = new() { Language = OcrLanguage.Russian };
+            if(!string.IsNullOrEmpty(ocrIronKey)) 
+            {
+                IronOcr.License.LicenseKey = ocrIronKey; 
+                _ocrIronTesseract = new() { Language = OcrLanguage.Russian };
+            } 
+            else 
+            {
+                throw new Exception($"No argument '{IRON_OCR_KEY}' was received to create OCRServiceProvider.");
+            }
         }
         #endregion
 
@@ -38,12 +46,38 @@ namespace CSharpHelpers.Services
 
             List<ScanTextResult> results = [];
 
+            List<Task<ScanTextResult>?> scanTasks = [];
             foreach (var fileInfo in fileInfos)
             {
-                var currentTask = ScanTextFromFile(fileInfo);
-                await currentTask;
-                currentTask.Wait();
-                results.Add(currentTask.Result);
+                scanTasks.Add(ScanTextFromFile(fileInfo));
+            }
+            var scanTasksArray = scanTasks.ToArray();
+            if(scanTasksArray is null || scanTasksArray.Length == 0) 
+            {
+                return results;
+            }
+            else 
+            {
+                Trace.WriteLine($"{scanTasksArray.Length} files ready for text scan.");
+
+                 for (int i = 0; i < scanTasksArray.Length; i++)
+                {
+                    var currentTask = scanTasksArray[i];
+                    if (currentTask is not null)
+                    {
+                        try
+                        {
+                            await currentTask;
+                            currentTask.Wait();
+                            results.Add(currentTask.Result);
+                        }
+                        catch (Exception ex)
+                        {
+                            Trace.WriteLine(ex.Message);
+                        }
+                    }
+                }
+                Task.WaitAll(scanTasksArray!);
             }
 
             var scanTime = results.Aggregate(0.00, (acc, i) => acc + i.ScanTime);
@@ -85,15 +119,17 @@ namespace CSharpHelpers.Services
                                 break;  
                         }
 
-                        var readTask = _ocrIronTesseract.ReadAsync(input);
-                        readTask.Start();
-                        readTask.Wait();
+                        var read = _ocrIronTesseract.Read(input);
+                       // await Task.Run(() => readTask);
+                        //readTask.Wait();
 
-                        text = readTask.Result.Text;
+                        text = read.Text;
                     }
 
                     break;
             }
+
+            
 
             stopwatch.Stop();
             double time = stopwatch.ElapsedMilliseconds / 1000;

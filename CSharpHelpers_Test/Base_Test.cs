@@ -14,7 +14,6 @@ namespace CSharpHelpers_Test
 
         #endregion
 
-
         #region Properties
         internal DirectoryInfo? ProjectDirectory;
         #endregion
