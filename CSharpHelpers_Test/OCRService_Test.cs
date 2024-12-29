@@ -23,7 +23,7 @@ namespace CSharpHelpers_Test
             _ironOcrService = new(OCRServiceProvider.IronOCRProvider);
         }
 
-        [Test]
+        [Test, Order (1)]
         public async Task ScanDocuments_Test() 
         {
             // input assert 

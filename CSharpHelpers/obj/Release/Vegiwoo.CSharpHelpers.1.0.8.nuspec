@@ -5,7 +5,7 @@
     <version>1.0.8</version>
     <authors>Vegi Woo</authors>
     <description>Package Description</description>
-    <repository type="git" commit="b00469ea5c78e43606cad83468d449c850986d3b" />
+    <repository type="git" commit="ef753d284d661a4fa4d8431d3852768dd96fa144" />
     <dependencies>
       <group targetFramework="net8.0">
         <dependency id="IronOCR" version="2024.12.2" exclude="Build,Analyzers" />

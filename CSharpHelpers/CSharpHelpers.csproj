@@ -5,6 +5,7 @@
     <Authors>Vegi Woo</Authors>
     <Company>Personal Company</Company>
     <TargetFramework>net8.0</TargetFramework>
+    <PlatformTarget>anycpu</PlatformTarget>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
