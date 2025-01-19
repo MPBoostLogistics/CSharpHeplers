@@ -9,7 +9,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <UserSecretsId>8386ca8b-57cc-4e16-aeb3-56076d3186cf</UserSecretsId>
+    <UserSecretsId>bfed26e9-3d70-444b-aa5c-7e8c416f2f88</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="IronOCR" Version="2024.12.2" />

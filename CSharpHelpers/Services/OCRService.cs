@@ -16,14 +16,13 @@ namespace CSharpHelpers.Services
         // For IronOcr
         public OCRService(OCRServiceProvider provider) : base()
         {
-        
             _provider = provider;
 
             // IronOCRProvider
             var ocrIronKey = config[IRON_OCR_KEY];
             if(!string.IsNullOrEmpty(ocrIronKey)) 
             {
-                IronOcr.License.LicenseKey = ocrIronKey; 
+                License.LicenseKey = ocrIronKey; 
                 _ocrIronTesseract = new() { Language = OcrLanguage.Russian };
             } 
             else 
