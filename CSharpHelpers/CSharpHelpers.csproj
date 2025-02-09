@@ -6,6 +6,7 @@
     <Company>Personal Company</Company>
     <TargetFramework>net8.0</TargetFramework>
     <PlatformTarget>ARM64</PlatformTarget>
+    <Configuration>Release</Configuration>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
