@@ -20,22 +20,20 @@ namespace CSharpHelpers.Services
 
             // IronOCRProvider
             string? ocrIronKey;
-
-            #if DEBUG
             ocrIronKey = config[IRON_OCR_KEY];
-            #else
-            ocrIronKey = GetEnvironmentVariable(IRON_OCR_KEY);
-            #endif
-            
-            if(!string.IsNullOrEmpty(ocrIronKey)) 
+           
+            if(string.IsNullOrEmpty(ocrIronKey)) 
             {
-                License.LicenseKey = ocrIronKey; 
-                _ocrIronTesseract = new() { Language = OcrLanguage.Russian };
+                ocrIronKey = Environment.GetEnvironmentVariable(IRON_OCR_KEY, EnvironmentVariableTarget.User);
             } 
-            else 
+           
+            if(string.IsNullOrEmpty(ocrIronKey)) 
             {
                 throw new Exception($"No argument '{IRON_OCR_KEY}' was received to create OCRServiceProvider.");
             }
+            
+            License.LicenseKey = ocrIronKey; 
+            _ocrIronTesseract = new() { Language = OcrLanguage.Russian };
         }
         #endregion
 
