@@ -8,7 +8,6 @@
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <UserSecretsId>bfed26e9-3d70-444b-aa5c-7e8c416f2f88</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
