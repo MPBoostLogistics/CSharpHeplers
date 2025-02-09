@@ -13,6 +13,9 @@ jobs:
         # проверка версии dontet
         - name: Checking dotnet version
           run: dotnet --version
+        # сборка проекта
+        - name: Project build
+          run: dotnet build -p:Configuration=Release
         # запуск тестов 
         - name: Run tests 
           run: dotnet test -v n
