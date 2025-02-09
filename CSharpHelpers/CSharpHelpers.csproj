@@ -5,8 +5,6 @@
     <Authors>Vegi Woo</Authors>
     <Company>Personal Company</Company>
     <TargetFramework>net8.0</TargetFramework>
-    <PlatformTarget>ARM64</PlatformTarget>
-    <Configuration>Release</Configuration>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>

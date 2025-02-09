@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Personal Company")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.10.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.10+97c30e5e4fa3c178cbb7d75e283a6e1d6619e32c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.10+289f6abea63355985ad54c029171ccc47c464d5b")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSharpHelpers")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSharpHelpers")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.10.0")]
