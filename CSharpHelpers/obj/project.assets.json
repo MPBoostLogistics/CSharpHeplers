@@ -1821,7 +1821,7 @@
     "/Users/dmitrijsamarcev/.nuget/packages/": {}
   },
   "project": {
-    "version": "1.0.8",
+    "version": "1.0.10",
     "restore": {
       "projectUniqueName": "/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/CSharpHelpers.csproj",
       "projectName": "Vegiwoo.CSharpHelpers",

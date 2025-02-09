@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CSharpHelpers_Test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b00469ea5c78e43606cad83468d449c850986d3b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6d01a3c11092aa942e2e1dd7d4f23e0f2df83a4")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSharpHelpers_Test")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSharpHelpers_Test")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

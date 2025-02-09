@@ -13,7 +13,7 @@ namespace CSharpHelpers.Services
         #endregion
 
         #region Constructors
-        // For IronOcr
+        // Constructor for IronOcr
         public OCRService(OCRServiceProvider provider) : base()
         {
             _provider = provider;
@@ -88,7 +88,7 @@ namespace CSharpHelpers.Services
         }
 
         /// <summary>
-        /// Scanning text information from a file.
+        /// Async scan text info from a file to ScanTextResult type.
         /// </summary>
         /// <param name="fileInfo">A FileInfo object representing a file.</param>
         /// <returns>ScanTextResult object as a result of scanning.</returns>
@@ -118,17 +118,15 @@ namespace CSharpHelpers.Services
                                 break;  
                         }
 
-                        var read = _ocrIronTesseract.Read(input);
-                       // await Task.Run(() => readTask);
-                        //readTask.Wait();
+                        var readTask = _ocrIronTesseract.ReadAsync(input);
+                        await Task.Run(() => readTask);
+                        readTask.Wait();
 
-                        text = read.Text;
+                        text = readTask.Result.Text;
                     }
 
                     break;
             }
-
-            
 
             stopwatch.Stop();
             double time = stopwatch.ElapsedMilliseconds / 1000;

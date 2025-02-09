@@ -1237,7 +1237,7 @@
           }
         }
       },
-      "Vegiwoo.CSharpHelpers/1.0.8": {
+      "Vegiwoo.CSharpHelpers/1.0.10": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -2789,7 +2789,7 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Vegiwoo.CSharpHelpers/1.0.8": {
+    "Vegiwoo.CSharpHelpers/1.0.10": {
       "type": "project",
       "path": "../CSharpHelpers/CSharpHelpers.csproj",
       "msbuildProject": "../CSharpHelpers/CSharpHelpers.csproj"
@@ -2803,7 +2803,7 @@
       "NUnit >= 3.14.0",
       "NUnit.Analyzers >= 3.9.0",
       "NUnit3TestAdapter >= 4.5.0",
-      "Vegiwoo.CSharpHelpers >= 1.0.8",
+      "Vegiwoo.CSharpHelpers >= 1.0.10",
       "coverlet.collector >= 6.0.0"
     ]
   },
