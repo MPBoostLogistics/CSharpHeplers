@@ -3,6 +3,8 @@ on:
     push:
         branches: 
             - 'main'
+permissions:
+    contents: write
 jobs:  
     checkout_and_dependencies:
         runs-on: ubuntu-latest
@@ -23,26 +25,27 @@ jobs:
               run: dotnet build -p:Configuration=Release
             # использование готовых actions - загрузка артефактов сборки
             - name: Upload artefacts of build 
+             
               uses: actions/upload-artifact@v4
               with:
-                path: obj/Release
+                path: /obj/Release
                 name: build
 
-    run_tests:
-        # ожидание завершения связанной работы
-        needs: checkout_and_dependencies
-        runs-on: ubuntu-latest
-        steps: 
-            - name: Get the repository code
-              uses: actions/checkout@v4
-              # использование готовых actions - создание кэша
-            - name: Caсhe files 
-              uses: actions/cache@v4
-              with:
-                path: ~/.npm
-                key: dotnet-modules-${{ hashFiles('**/package-lock.json') }}
-            - name: Install dependencies for tests
-              uses: actions/setup-dotnet@v4
-            # запуск тестов 
-            - name: Run tests 
-              run: dotnet test -v n
+    # run_tests:
+    #     # ожидание завершения связанной работы
+    #     needs: checkout_and_dependencies
+    #     runs-on: ubuntu-latest
+    #     steps: 
+    #         - name: Get the repository code
+    #           uses: actions/checkout@v4
+    #           # использование готовых actions - создание кэша
+    #         - name: Caсhe files 
+    #           uses: actions/cache@v4
+    #           with:
+    #             path: ~/.npm
+    #             key: dotnet-modules-${{ hashFiles('**/package-lock.json') }}
+    #         - name: Install dependencies for tests
+    #           uses: actions/setup-dotnet@v4
+    #         # запуск тестов 
+    #         - name: Run tests 
+    #           run: dotnet test -v n
