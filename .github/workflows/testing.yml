@@ -1,39 +1,24 @@
-name: Linting and testing
+name: Testing app
 on: push
 jobs:  
-  use_linter:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
-    steps: 
-        # использование готовых actions - чекаут репозитория
-        - name: Get the repository code
-          uses: actions/checkout@v4
-          with:
-            fetch-depth: 0
-        # использование готовых actions - установка зависимостей
-        - name: Install dependencies
-          uses: actions/setup-dotnet@v4
-         # использование готовых actions - установка зависимостей
-        - name: Super-linter
-          uses: super-linter/super-linter@v7.2.1 
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-#   run_tests:
-#     runs-on: ubuntu-latest
-#     steps: 
-#         # использование готовых actions - чекаут репозитория
-#         - name: Get the repository code
-#           uses: actions/checkout@v4
-#         # использование готовых actions - установка зависимостей
-#         - name: Install dependencies
-#           uses: actions/setup-dotnet@v4
-#         # запуск тестов 
-#         - name: Run tests 
-#           run: dotnet test -v n
-
-
-          
+    checkout_and_dependencies:
+        runs-on: ubuntu-latest
+        steps: 
+            # использование готовых actions - чекаут репозитория
+            - name: Get the repository code
+              uses: actions/checkout@v4
+            # использование готовых actions - установка зависимостей
+            - name: Install dependencies
+              uses: actions/setup-dotnet@v4
+    run_tests:
+        # ожидание завершения связанной работы
+        needs: checkout_and_dependencies
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Get the repository code
+              uses: actions/checkout@v4
+            - name: Install dependencies for tests
+              uses: actions/setup-dotnet@v4
+            # запуск тестов 
+            - name: Run tests 
+              run: dotnet test -v n
