@@ -1,6 +1,7 @@
-name: Running nUnit tests
+name: running_nUnit_tests
 on: push
-jobs:
+jobs:  
+  add_dependencies:
     runs-on: ubuntu-latest
     steps: 
         # использование готовых actions - чекаут репозитория
