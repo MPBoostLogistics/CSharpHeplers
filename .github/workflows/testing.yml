@@ -1,7 +1,7 @@
 name: running_nUnit_tests
 on: push
 jobs:  
-  add_dependencies:
+  add_dependencies_and_run_tests:
     runs-on: ubuntu-latest
     steps: 
         # использование готовых actions - чекаут репозитория
@@ -13,3 +13,7 @@ jobs:
         # проверка версии dontet
         - name: Checking dotnet version
           run: dotnet --version
+        # запуск тестов 
+        - name: Run tests 
+          run: dotnet test -v n
+          
