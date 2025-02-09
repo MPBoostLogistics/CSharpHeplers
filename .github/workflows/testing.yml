@@ -27,7 +27,7 @@ jobs:
             - name: Upload artefacts of build 
               uses: actions/upload-artifact@v4
               with:
-                path: /bin/Release
+                path: bin
                 name: build
 
     # run_tests:
