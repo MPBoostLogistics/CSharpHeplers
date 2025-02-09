@@ -435,3 +435,6 @@ src/NuGetGallery/App_Data/Files/*
 !src/NuGetGallery/App_Data/Files/Content/
 !src/NuGetGallery/Views/Packages/
 !src/NuGetGallery/Branding/Views/Packages/
+
+# My notes
+*.cache
