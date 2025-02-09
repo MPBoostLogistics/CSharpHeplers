@@ -5,6 +5,8 @@ on:
             - 'main'
 permissions:
     contents: write
+env:
+  IRON_OCR_KEY: ${{secrets.IRON_OCR_KEY}}
 jobs:  
     checkout_and_dependencies:
         runs-on: ubuntu-latest

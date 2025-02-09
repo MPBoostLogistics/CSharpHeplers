@@ -19,7 +19,14 @@ namespace CSharpHelpers.Services
             _provider = provider;
 
             // IronOCRProvider
-            var ocrIronKey = config[IRON_OCR_KEY];
+            string? ocrIronKey;
+
+            #if DEBUG
+            ocrIronKey = config[IRON_OCR_KEY];
+            #else
+            ocrIronKey = GetEnvironmentVariable(IRON_OCR_KEY);
+            #endif
+            
             if(!string.IsNullOrEmpty(ocrIronKey)) 
             {
                 License.LicenseKey = ocrIronKey; 
