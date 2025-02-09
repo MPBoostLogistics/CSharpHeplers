@@ -25,10 +25,9 @@ jobs:
               run: dotnet build -p:Configuration=Release
             # использование готовых actions - загрузка артефактов сборки
             - name: Upload artefacts of build 
-             
               uses: actions/upload-artifact@v4
               with:
-                path: /obj/Release
+                path: /bin/Release
                 name: build
 
     # run_tests:
