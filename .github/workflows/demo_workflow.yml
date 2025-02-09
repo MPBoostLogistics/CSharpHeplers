@@ -14,3 +14,7 @@ jobs:
     steps: 
       - name: Print to console 
         run: echo step - Print to console;
+      - name: Print a few lines to console 
+        run: | 
+          echo step - Print first to console;
+          echo step - Print second to console;
