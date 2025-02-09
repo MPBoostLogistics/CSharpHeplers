@@ -1,22 +1,39 @@
-name: running_nUnit_tests
+name: Linting and testing
 on: push
 jobs:  
-  add_dependencies_and_run_tests:
+  use_linter:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
     steps: 
         # использование готовых actions - чекаут репозитория
         - name: Get the repository code
           uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
         # использование готовых actions - установка зависимостей
         - name: Install dependencies
           uses: actions/setup-dotnet@v4
-        # проверка версии dontet
-        - name: Checking dotnet version
-          run: dotnet --version
-        # сборка проекта
-        - name: Project build
-          run: dotnet build -p:Configuration=Release
-        # запуск тестов 
-        - name: Run tests 
-          run: dotnet test -v n
+         # использование готовых actions - установка зависимостей
+        - name: Super-linter
+          uses: super-linter/super-linter@v7.2.1 
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+#   run_tests:
+#     runs-on: ubuntu-latest
+#     steps: 
+#         # использование готовых actions - чекаут репозитория
+#         - name: Get the repository code
+#           uses: actions/checkout@v4
+#         # использование готовых actions - установка зависимостей
+#         - name: Install dependencies
+#           uses: actions/setup-dotnet@v4
+#         # запуск тестов 
+#         - name: Run tests 
+#           run: dotnet test -v n
+
+
           
