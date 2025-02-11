@@ -36,7 +36,10 @@ namespace CSharpHelpers.Models
         public SavedFile(ScanTextResult scanTextResult, string targetExtension, SavedFileSettings savedFileSettings) 
         {
             SourceFileInfo = new FileInfo(scanTextResult.SourceFilePath);
-            FileTargetSaveDirectory = new DirectoryInfo(scanTextResult.SourceFilePath);
+
+            if(!string.IsNullOrEmpty(scanTextResult.TargetFilePath))
+                FileTargetSaveDirectory = new DirectoryInfo(scanTextResult.TargetFilePath);
+
             NewFileName = scanTextResult.NewFileName ?? SourceFileInfo.Name;
             TargetExtension = targetExtension;
             FileUpdateDate = scanTextResult.NewFileDate ?? SourceFileInfo.CreationTime;
@@ -51,7 +54,7 @@ namespace CSharpHelpers.Models
         public string GetFullFileTargetSaveDirectory() => 
             FileTargetSaveDirectory is null ? 
             string.Empty : 
-            $"{FileTargetSaveDirectory.FullName}/{FileUpdateDate.Year}/{FileUpdateDate.Month} {FileUpdateDate.Year}";
+            Path.Combine(FileTargetSaveDirectory.FullName,$"{FileUpdateDate.Year}",$"{FileUpdateDate.Month} {FileUpdateDate.Year}");
 
         #endregion
     }
