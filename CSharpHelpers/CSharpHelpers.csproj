@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageId>Vegiwoo.CSharpHelpers</PackageId>
-    <Version>1.0.12</Version>
+    <Version>1.0.16</Version>
     <Authors>Vegi Woo</Authors>
     <Company>MPBoost Logistics</Company>
     <TargetFramework>net8.0</TargetFramework>
@@ -16,6 +16,8 @@
     <PackageReference Include="IronOCR" Version="2024.12.2" />
     <PackageReference Include="IronOcr.Languages.Russian" Version="2020.11.2" />
     <PackageReference Include="IronOcr.MacOs.ARM" Version="2024.12.2" />
+    <PackageReference Include="itext" Version="9.0.0" />
+    <PackageReference Include="itext.bouncy-castle-adapter" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0" />
   </ItemGroup>

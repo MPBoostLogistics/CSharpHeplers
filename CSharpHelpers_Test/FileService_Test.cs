@@ -79,7 +79,8 @@ namespace CSharpHelpers_Test
             for (int i = 0; i < testFiles!.Length; i++)
             {
                 FileInfo? testFile = testFiles![i];
-                FileService.RenameFile(new SavedFile(testFile, testFileNames[i], FileService.FILEEXTENSION_JPEG, testFilesAuthor, testFile.Directory));
+                var file = new SavedFile(testFile, testFileNames[i], FileService.FILEEXTENSION_JPEG, testFilesAuthor, new SavedFileSettings(false,false), testFile.Directory);
+                FileService.RenameOrRemoveFile(file);
             }
 
             // assert 

@@ -5,7 +5,7 @@
   },
   "projects": {
     "/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/CSharpHelpers.csproj": {
-      "version": "1.0.12",
+      "version": "1.0.16",
       "restore": {
         "projectUniqueName": "/Users/dmitrijsamarcev/Documents/Programming/CSharp/CSharpHeplers/CSharpHelpers/CSharpHelpers.csproj",
         "projectName": "Vegiwoo.CSharpHelpers",
@@ -60,6 +60,14 @@
               "version": "[9.0.0, )"
             },
             "Microsoft.Extensions.Configuration.UserSecrets": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "itext": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "itext.bouncy-castle-adapter": {
               "target": "Package",
               "version": "[9.0.0, )"
             }
@@ -141,15 +149,17 @@
             },
             "NUnit": {
               "target": "Package",
-              "version": "[3.14.0, )"
+              "version": "[4.3.2, )"
             },
             "NUnit.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[3.9.0, )"
+              "version": "[4.3.0, )"
             },
             "NUnit3TestAdapter": {
               "target": "Package",
-              "version": "[4.5.0, )"
+              "version": "[4.3.2, )"
             },
             "coverlet.collector": {
               "target": "Package",

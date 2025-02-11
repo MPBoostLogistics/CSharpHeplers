@@ -1,6 +1,10 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using CSharpHelpers.Models;
+using iText.IO.Image;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 
 namespace CSharpHelpers.Services
 {
@@ -94,9 +98,7 @@ namespace CSharpHelpers.Services
 
             if(extensions is not null && extensions.Length != 0) 
             {
-                fileInfos = fileInfos
-                                .Where(fi => extensions.Contains(fi.Extension))
-                                .ToArray();
+                fileInfos = [.. fileInfos.Where(fi => extensions.Contains(fi.Extension))];
             }
 
             return fileInfos is not null && fileInfos.Length > 0;
@@ -124,27 +126,36 @@ namespace CSharpHelpers.Services
             return (matchList, missMatchList);  
         }
 
-/*
-
- internal static (List<FileInfo> matchList, List<FileInfo> missMatchList) GetFilesByNameMatchingPattern(in List<FileInfo> fileInfos, Regex fileNameRegex) 
+         public static Task<string> CreateAndSavePdfDocument(SavedFile savedFile) 
         {
-            List<FileInfo> matchList = [], missMatchList = [];
-            
-            foreach (var fileInfo in fileInfos) 
-            {
-                var match = fileNameRegex.Match(fileInfo.Name);
-                if(!match.Success) 
-                    missMatchList.Add(fileInfo);
+            return Task.Run(() => {
+
+                var outputDirPath = savedFile.GetFullFileTargetSaveDirectory();
+
+                if(GetDirectoryInfo(outputDirPath, out DirectoryInfo? directoryInfo, true) && 
+                    directoryInfo is not null) 
+                {
+                    var savePath = $"{directoryInfo.FullName}/{savedFile.NewFileName}{savedFile.TargetExtension}";
+                    PdfDocument pdf = new(new PdfWriter(savePath));
+                    
+                    using Document? document = new(pdf);
+
+                    //Update encoded image
+                    byte[] data = Convert.FromBase64String(savedFile.SourceFileInfo.FullName);
+                    ImageData imageData = ImageDataFactory.Create(data) ?? throw new Exception("imageData is null");
+                    Image? image = new(imageData);
+                    
+                    document.Add(image);
+                    document.Close();
+
+                    return savePath;
+                } 
                 else 
-                    matchList.Add(fileInfo);
-            }
-
-            return (matchList, missMatchList);  
+                {
+                    return string.Empty;
+                }
+            });
         }
-
-*/
-
-
 
         /// <summary>
         /// Deletes file at path.
@@ -171,17 +182,16 @@ namespace CSharpHelpers.Services
         /// </summary>
         /// <param name="savedFile">'Save File' model.</param>
         /// <returns>Operation execution flag.</returns>
-        public static bool RenameFile(SavedFile savedFile)
+        public static bool RenameOrRemoveFile(SavedFile savedFile)
         {
-            var targetDirPath = savedFile.FileSaveDirectory?.FullName; 
+            var targetDirPath = savedFile.FileTargetSaveDirectory?.FullName; 
 
-            if (string.IsNullOrEmpty(targetDirPath))
-                return false; 
+            if (string.IsNullOrEmpty(targetDirPath)) return false; 
 
-            var newFileName = savedFile.GetNewfilenameWithTargetExtension();
-            var newFilePath = Path.Combine(targetDirPath, newFileName);
+            string? newFileName = savedFile.GetNewfilenameWithTargetExtension();
+            string? newFilePath = Path.Combine(targetDirPath, newFileName);
 
-            File.Move(savedFile.FileInfo.FullName, newFilePath);
+            File.Move(savedFile.SourceFileInfo.FullName, newFilePath);
             File.SetCreationTime(newFilePath, savedFile.FileUpdateDate);
             File.SetLastWriteTime(newFilePath, savedFile.FileUpdateDate);
 
