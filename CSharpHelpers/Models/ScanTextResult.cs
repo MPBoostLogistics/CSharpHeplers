@@ -10,11 +10,18 @@ namespace CSharpHelpers.Models
         public bool IsConvertToPdfRequired { get; private set; } = isConvertToPdfRequired;
         public string? NewFileName { get; private set;} = null;
         public DateOnly? NewFileDate { get; private set;} = null;
+        public string ScanManager { get; private set;} = string.Empty;
+        public string? PathToSubdirForSaving =>
+            NewFileDate.HasValue ?  
+            $"/{NewFileDate.Value.Year}/{NewFileDate.Value.Month} {NewFileDate.Value.Year}" : 
+            null;
+   
         #endregion
 
         #region Functionality
-        public void Set(string newFileName) => NewFileName = newFileName.Trim();
-        public void Set(DateOnly newFileDate) => NewFileDate = newFileDate;
+        public void SetNewFilename(string newFileName) => NewFileName = newFileName.Trim();
+        public void SetFileCreatioDate(DateOnly newFileDate) => NewFileDate = newFileDate;
+        public void SetScanManager(string scanManager) => ScanManager = scanManager;
         #endregion
     }
 }

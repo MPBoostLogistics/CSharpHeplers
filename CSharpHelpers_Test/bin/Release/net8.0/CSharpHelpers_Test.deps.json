@@ -14,9 +14,9 @@
           "NUnit": "3.14.0",
           "NUnit.Analyzers": "3.9.0",
           "NUnit3TestAdapter": "4.5.0",
-          "Vegiwoo.CSharpHelpers": "1.0.11",
+          "Vegiwoo.CSharpHelpers": "1.0.12",
           "coverlet.collector": "6.0.0",
-          "CSharpHelpers": "1.0.11.0"
+          "CSharpHelpers": "1.0.12.0"
         },
         "runtime": {
           "CSharpHelpers_Test.dll": {}
@@ -991,7 +991,7 @@
           }
         }
       },
-      "Vegiwoo.CSharpHelpers/1.0.11": {
+      "Vegiwoo.CSharpHelpers/1.0.12": {
         "dependencies": {
           "IronOcr": "2024.12.2",
           "IronOcr.Languages.Russian": "2020.11.2",
@@ -1003,11 +1003,11 @@
           "CSharpHelpers.dll": {}
         }
       },
-      "CSharpHelpers/1.0.11.0": {
+      "CSharpHelpers/1.0.12.0": {
         "runtime": {
           "CSharpHelpers.dll": {
-            "assemblyVersion": "1.0.11.0",
-            "fileVersion": "1.0.11.0"
+            "assemblyVersion": "1.0.12.0",
+            "fileVersion": "1.0.12.0"
           }
         }
       }
@@ -1341,12 +1341,12 @@
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
-    "Vegiwoo.CSharpHelpers/1.0.11": {
+    "Vegiwoo.CSharpHelpers/1.0.12": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "CSharpHelpers/1.0.11.0": {
+    "CSharpHelpers/1.0.12.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
