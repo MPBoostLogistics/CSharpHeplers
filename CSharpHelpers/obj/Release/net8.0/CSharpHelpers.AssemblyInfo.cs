@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MPBoost Logistics")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.17.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.17+ee5c479fcb2a2342cb542ade56118b40ed96a337")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.17+58dbd407cbbcd12cab896c6a96678aa51dba0b86")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSharpHelpers")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSharpHelpers")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.17.0")]

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using CSharpHelpers.Models;
 
@@ -6,7 +7,7 @@ namespace CSharpHelpers.Services
 {
     public class TextService : BaseService
     {
-        // private static readonly CultureInfo cultureInfo = new("ru-RU");
+        private static readonly CultureInfo cultureInfo = new("ru-RU");
 
         public static async Task<List<(ScanTextResult, string[]? matchesResult)>> FindMatchesInTextsByRegex(List<ScanTextResult> scanTextResults, Regex regex, int allowedNumberMatches) 
         {
@@ -64,5 +65,42 @@ namespace CSharpHelpers.Services
             await Task.Delay(10);               // Dummy
             return (result, matchesResult);
         }       
+    
+        public static bool FindDateInText(string text, Regex fileDateRegex, out DateTime? dateTime) 
+        {
+            dateTime = null;
+            var match = fileDateRegex.Match(text);
+            if(match.Success) 
+            {
+                dateTime = DateTime.Parse(match.Value.Trim(), cultureInfo);
+            } 
+            return dateTime is not null;
+        }
+
+        private static void UpdateScanTextResult(in DirectoryInfo? targetDirectoryInfo, in string scanManagerName, 
+            in Regex fileDateRegex, ref ScanTextResult currentResult, string[] matches)
+        {
+            if (matches.FirstOrDefault() != null || !string.IsNullOrEmpty(matches.FirstOrDefault()))
+            {
+                var newFileName = matches.First();
+     
+                // Write target filePath
+                if(targetDirectoryInfo is not null)
+                    currentResult.SetTargetFilePath(targetDirectoryInfo.FullName);
+
+                // Write scan manager name
+                currentResult.SetScanManager(scanManagerName);
+
+                // Write new file name
+                currentResult.SetNewFilename(newFileName);
+
+                if (FindDateInText(newFileName, fileDateRegex, out DateTime? createDateTime) &&
+                    createDateTime is not null)
+                {
+                    // Write the document creation date
+                    currentResult.SetFileCreatioDate((DateTime)createDateTime);
+                }
+            }
+        }
     }
 }

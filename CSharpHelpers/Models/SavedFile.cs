@@ -3,7 +3,7 @@ namespace CSharpHelpers.Models
     public readonly struct SavedFileSettings (bool isOverwriteExistingFile, bool isDeleteSourceFile)
     {
         public bool IsOverwriteExistingFile { get; } = isOverwriteExistingFile;
-        public bool IsDeleteSourceFile { get ;} = isDeleteSourceFile;
+        public bool IsDeleteSourceFile { get ; } = isDeleteSourceFile;
     }
 
     /// <summary>

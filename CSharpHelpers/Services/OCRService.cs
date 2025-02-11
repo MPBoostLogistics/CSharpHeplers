@@ -44,9 +44,10 @@ namespace CSharpHelpers.Services
         /// </summary>
         /// <param name="fileInfos">A FileInfo objects representing a files</param>
         /// <returns>A collection of ScanTextResult objects as result of execution.</returns>
-        public async Task<List<ScanTextResult>> ScanTextFromFiles(List<FileInfo> fileInfos) 
+        public async Task<List<ScanTextResult>> ScanTextFromFiles(List<FileInfo> fileInfos, bool isTrasing = false) 
         {
-            Trace.WriteLine("Document scanning started...");
+            if(isTrasing)
+                Trace.WriteLine("Documents scanning started...");
 
             List<ScanTextResult> results = [];
 
@@ -56,39 +57,37 @@ namespace CSharpHelpers.Services
                 scanTasks.Add(ScanTextFromFile(fileInfo));
             }
             var scanTasksArray = scanTasks.ToArray();
-            if(scanTasksArray is null || scanTasksArray.Length == 0) 
-            {
-                return results;
-            }
-            else 
-            {
+
+            if(scanTasksArray is null || scanTasksArray.Length == 0) return results;
+        
+            if(isTrasing)
                 Trace.WriteLine($"{scanTasksArray.Length} files ready for text scan.");
 
-                 for (int i = 0; i < scanTasksArray.Length; i++)
+            for (int i = 0; i < scanTasksArray.Length; i++)
+            {
+                var currentTask = scanTasksArray[i];
+                if (currentTask is not null)
                 {
-                    var currentTask = scanTasksArray[i];
-                    if (currentTask is not null)
+                    try
                     {
-                        try
-                        {
-                            await currentTask;
-                            currentTask.Wait();
-                            results.Add(currentTask.Result);
-                        }
-                        catch (Exception ex)
-                        {
-                            Trace.WriteLine(ex.Message);
-                        }
+                        await currentTask;
+                        currentTask.Wait();
+                        results.Add(currentTask.Result);
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.WriteLine(ex.Message);
                     }
                 }
-                Task.WaitAll(scanTasksArray!);
             }
-
+            Task.WaitAll(scanTasksArray!);
+            
             var scanTime = results.Aggregate(0.00, (acc, i) => acc + i.ScanTime);
 
-            Trace.WriteLine("\nDocument scanning completed.\n" + 
-                            $"Scanning {results.Count} documents took {scanTime} seconds");
-            
+            if(isTrasing)
+                Trace.WriteLine("\nDocument scanning completed.\n" + 
+                                $"Scanning {results.Count} documents took {scanTime} sec.");
+                                
             return results;
         }
 
