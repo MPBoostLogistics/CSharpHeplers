@@ -5,8 +5,9 @@
     <Authors>Vegi Woo</Authors>
     <Company>MPBoost Logistics</Company>
     <TargetFramework>net8.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild> 
+    <PlatformTarget>anycpu</PlatformTarget>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild> 
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UserSecretsId>bfed26e9-3d70-444b-aa5c-7e8c416f2f88</UserSecretsId>

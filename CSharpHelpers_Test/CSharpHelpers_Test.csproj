@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <PlatformTarget>anycpu</PlatformTarget>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
