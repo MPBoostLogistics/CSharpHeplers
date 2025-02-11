@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "CSharpHelpers/1.0.10": {
+      "CSharpHelpers/1.0.11": {
         "dependencies": {
           "IronOcr": "2024.12.2",
           "IronOcr.Languages.Russian": "2020.11.2",
@@ -698,7 +698,7 @@
     }
   },
   "libraries": {
-    "CSharpHelpers/1.0.10": {
+    "CSharpHelpers/1.0.11": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

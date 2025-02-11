@@ -11,13 +11,13 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("bfed26e9-3d70-444b-aa5c-7e8c416f2f88")]
-[assembly: System.Reflection.AssemblyCompanyAttribute("Personal Company")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("MPBoost Logistics")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.10.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.10+27e5c216ff05a84b83f60dbfd74891266d54e3d7")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.11.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.11+8d3eed8ad347c01f929d34c5ef2d53ec65f374df")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSharpHelpers")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSharpHelpers")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.10.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.11.0")]
 
 // Создано классом WriteCodeFragment MSBuild.
 
