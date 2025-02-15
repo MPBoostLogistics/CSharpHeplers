@@ -38,8 +38,10 @@ jobs:
               with:
                 path: ~/.npm
                 key: dotnet-modules-${{ hashFiles('**/package-lock.json') }}
-            - name: Install dependencies for tests
+            - name: Install dependencies for tests 01
               uses: actions/setup-dotnet@v4
+            - name: Install dependencies for tests 02
+              run: sudo apt update && sudo apt install -y apt-utils libgdiplus libc6-dev
             - name: Build app 
               run: dotnet build -p:Configuration=Release
             - name: Run tests 
