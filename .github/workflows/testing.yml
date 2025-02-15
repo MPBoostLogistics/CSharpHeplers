@@ -42,7 +42,9 @@ jobs:
               uses: actions/setup-dotnet@v4
             - name: Install dependencies for tests 02
               run: sudo apt update && sudo apt install -y apt-utils libgdiplus libc6-dev
-            - name: Build app 
+            - name: Install dependencies for tests 02
+              run: dotnet add package IronOcr && dotnet add package dotnet add package IronOcr.Linux && dotnet add package IronOcr.Languages.Russian
+            - name: Build project 
               run: dotnet build -p:Configuration=Release
             - name: Run tests 
               run: dotnet test -v n
