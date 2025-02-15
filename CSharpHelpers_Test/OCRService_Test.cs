@@ -11,7 +11,7 @@ namespace CSharpHelpers_Test
         {
             // input assert 
             Assert.Multiple(() => {
-                Assert.That(testDirectoryInfo, Is.Not.Null);
+                Assert.That(testSourceDirectoryInfo, Is.Not.Null);
                 Assert.That(testFileInfos, Is.Not.Null);
                 Assert.That(testFileInfos, Has.Length.EqualTo(TEST_FILES_COUNT));
                 Assert.That(ironOcrService, Is.Not.Null);

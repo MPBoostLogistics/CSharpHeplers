@@ -20,13 +20,12 @@ namespace CSharpHelpers.Services
 
             // IronOCRProvider
             string? ocrIronKey;
+            #if DEBUG
             ocrIronKey = config[IRON_OCR_KEY];
-           
-            if(string.IsNullOrEmpty(ocrIronKey)) 
-            {
-                ocrIronKey = Environment.GetEnvironmentVariable(IRON_OCR_KEY, EnvironmentVariableTarget.User);
-            } 
-           
+            #else
+            ocrIronKey = Environment.GetEnvironmentVariable(IRON_OCR_KEY, EnvironmentVariableTarget.Machine);
+            #endif
+
             if(string.IsNullOrEmpty(ocrIronKey)) 
             {
                 throw new Exception($"No argument '{IRON_OCR_KEY}' was received to create OCRServiceProvider.");

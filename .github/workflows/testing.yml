@@ -5,48 +5,46 @@ on:
             - 'main'
 permissions:
     contents: write
-env:
-  IRON_OCR_KEY: ${{secrets.IRON_OCR_KEY}}
 jobs:  
     checkout_and_dependencies:
         runs-on: ubuntu-latest
         steps: 
-            # использование готовых actions - чекаут репозитория
             - name: Get the repository code
               uses: actions/checkout@v4
-            # использование готовых actions - создание кэша
             - name: Caсhe files 
               uses: actions/cache@v4
               with:
                 path: ~/.npm
                 key: dotnet-modules-${{ hashFiles('**/package-lock.json') }}
-            # использование готовых actions - установка зависимостей
             - name: Install dependencies
               uses: actions/setup-dotnet@v4
             - name: Build project 
               run: dotnet build -p:Configuration=Release
-            # использование готовых actions - загрузка артефактов сборки
             - name: Upload artefacts of build 
               uses: actions/upload-artifact@v4
               with:
                 path: bin
                 name: build
 
-    # run_tests:
-    #     # ожидание завершения связанной работы
-    #     needs: checkout_and_dependencies
-    #     runs-on: ubuntu-latest
-    #     steps: 
-    #         - name: Get the repository code
-    #           uses: actions/checkout@v4
-    #           # использование готовых actions - создание кэша
-    #         - name: Caсhe files 
-    #           uses: actions/cache@v4
-    #           with:
-    #             path: ~/.npm
-    #             key: dotnet-modules-${{ hashFiles('**/package-lock.json') }}
-    #         - name: Install dependencies for tests
-    #           uses: actions/setup-dotnet@v4
-    #         # запуск тестов 
-    #         - name: Run tests 
-    #           run: dotnet test -v n
+    run_tests:
+        needs: checkout_and_dependencies
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Get the repository code
+              uses: actions/checkout@v4
+            - name: Caсhe files 
+              uses: actions/cache@v4
+              with:
+                path: ~/.npm
+                key: dotnet-modules-${{ hashFiles('**/package-lock.json') }}
+            - name: Install dependencies for tests
+              uses: actions/setup-dotnet@v4
+            - shell: bash
+              env:
+                IRON_OCR_KEY: ${{ secrets.IRON_OCR_KEY }}
+              run: |
+                echo "$IRON_OCR_KEY"
+            - name: Build app 
+              run: dotnet build -p:Configuration=Release
+            - name: Run tests 
+              run: dotnet test -v n

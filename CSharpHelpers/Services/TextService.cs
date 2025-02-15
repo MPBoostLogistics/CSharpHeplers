@@ -77,7 +77,7 @@ namespace CSharpHelpers.Services
             return dateTime is not null;
         }
 
-        private static void UpdateScanTextResult(in DirectoryInfo? targetDirectoryInfo, in string scanManagerName, 
+        public static void UpdateScanTextResult(in DirectoryInfo? targetDirectoryInfo, in string scanManagerName, 
             in Regex fileDateRegex, ref ScanTextResult currentResult, string[] matches)
         {
             if (matches.FirstOrDefault() != null || !string.IsNullOrEmpty(matches.FirstOrDefault()))

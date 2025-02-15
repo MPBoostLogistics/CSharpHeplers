@@ -9,7 +9,6 @@ namespace CSharpHelpers_Test
     {
         #region Variables and constants
         
-        private const string TEST_PATH_INCORRECT = "TestDirectory01";
         private DirectoryInfo? _testDirectory;
         private FileInfo[]? testFiles = null;
         
@@ -28,8 +27,8 @@ namespace CSharpHelpers_Test
             }
         }
 
-        [TestCase(TEST_PATH_CORRECT, true)]
-        [TestCase(TEST_PATH_INCORRECT, false)]
+        [TestCase(TEST_SOURCE_PATH_CORRECT, true)]
+        [TestCase(TEST_SOURCE_PATH_INCORRECT, false)]
         [Order(1)]
         public void GetDirectoryByPathWithoutCreating_Test(string path, bool flag)
         {
@@ -51,7 +50,7 @@ namespace CSharpHelpers_Test
         public void GetFilesByExtensions_Test() 
         {
             // arrange
-            var testPath = string.Concat(ProjectDirectory?.FullName, $"/{TEST_PATH_CORRECT}");
+            var testPath = string.Concat(ProjectDirectory?.FullName, $"/{TEST_SOURCE_PATH_CORRECT}");
             var testDirectorySuccess = FileService.GetDirectoryInfo(testPath, out _testDirectory); 
             
             // act 
