@@ -3,6 +3,7 @@ on:
     push:
         branches: 
             - 'main'
+    workflow_dispatch:
 permissions:
     contents: write
 jobs:  
@@ -39,11 +40,6 @@ jobs:
                 key: dotnet-modules-${{ hashFiles('**/package-lock.json') }}
             - name: Install dependencies for tests
               uses: actions/setup-dotnet@v4
-            - shell: bash
-              env:
-                IRON_OCR_KEY: ${{ secrets.IRON_OCR_KEY }}
-              run: |
-                echo "$IRON_OCR_KEY"
             - name: Build app 
               run: dotnet build -p:Configuration=Release
             - name: Run tests 

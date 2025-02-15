@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using CSharpHelpers.Models;
 using IronOcr;
+using Microsoft.Extensions.Configuration;
 
 namespace CSharpHelpers.Services
 {
@@ -8,8 +9,8 @@ namespace CSharpHelpers.Services
     {
         #region Variables and constants
         private readonly OCRServiceProvider _provider;
-        private readonly IronTesseract _ocrIronTesseract;
-        public const string IRON_OCR_KEY = "IRON_OCR_KEY";
+        private readonly IronTesseract? _ocrIronTesseract;
+
         #endregion
 
         #region Constructors
@@ -19,20 +20,12 @@ namespace CSharpHelpers.Services
             _provider = provider;
 
             // IronOCRProvider
-            string? ocrIronKey;
-            #if DEBUG
-            ocrIronKey = config[IRON_OCR_KEY];
-            #else
-            ocrIronKey = Environment.GetEnvironmentVariable(IRON_OCR_KEY, EnvironmentVariableTarget.Machine);
-            #endif
-
-            if(string.IsNullOrEmpty(ocrIronKey)) 
+            if(provider == OCRServiceProvider.IronOCRProvider) 
             {
-                throw new Exception($"No argument '{IRON_OCR_KEY}' was received to create OCRServiceProvider.");
+                IConfigurationSection? settingSession = config!.GetSection("Settings");
+                License.LicenseKey = settingSession.GetValue<string>("TestIronOcrKey");
+                _ocrIronTesseract = new() { Language = OcrLanguage.Russian };
             }
-            
-            License.LicenseKey = ocrIronKey; 
-            _ocrIronTesseract = new() { Language = OcrLanguage.Russian };
         }
         #endregion
 
