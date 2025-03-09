@@ -1,12 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageId>Vegiwoo.CSharpHelpers</PackageId>
-    <Version>1.0.17</Version>
+    <Version>1.0.19</Version>
     <Authors>Vegi Woo</Authors>
     <Company>MPBoost Logistics</Company>
     <TargetFramework>net8.0</TargetFramework>
     <PlatformTarget>anycpu</PlatformTarget>
-    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild> 
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
