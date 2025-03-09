@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using CSharpHelpers.Models;
 using iText.IO.Image;
@@ -92,13 +93,18 @@ namespace CSharpHelpers.Services
             fileInfos = directoryInfo.GetFiles();
             if(fileInfos is null || fileInfos.Length == 0) 
             {
-                Trace.WriteLine($"There are no files atpath '{dirPath}'");
+                Trace.WriteLine($"There are no files at path '{dirPath}'");
                 return false;
             }
 
+            // Filter by extensions
             if(extensions is not null && extensions.Length != 0) 
             {
-                fileInfos = [.. fileInfos.Where(fi => extensions.Contains(fi.Extension))];
+               var fileInfosByExt = from fileInfo in fileInfos
+                                    where extensions.Contains(fileInfo.Extension)
+                                    select fileInfo;
+
+                fileInfos = [.. fileInfosByExt];
             }
 
             return fileInfos is not null && fileInfos.Length > 0;
